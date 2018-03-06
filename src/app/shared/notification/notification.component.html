@@ -1,0 +1,5 @@
+<div class="container" id="notifications-wrapper">
+  <div *ngFor="let notification of notifications">
+    <ngb-alert [type]="notification.type" (close)="close(notification)">{{notification.message}}</ngb-alert>
+  </div>
+</div>
