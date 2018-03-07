@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { DSpaceObject } from '../../core/shared/dspace-object.model';
 import { Router } from '@angular/router';
 import { isNotEmpty, hasValue, isEmpty } from '../empty.util';
-import { Notification } from "../notification/Notification";
-import {NotificationService} from "../notification/notification.service";
+import { NotificationService } from '../notification/notification.service';
+import { Notification } from '../notification/notification.model';
 
 /**
  * This component renders a simple item page.
@@ -34,8 +34,15 @@ export class SearchFormComponent {
   }
 
   onSubmit(data: any) {
-    //this.updateSearch(data);
-    this.notificationService.addNotificationWithTimeout(new Notification(this.query, "info"), 5000);
+    // this.updateSearch(data);
+    this.notificationService.addNotification(
+      Notification.getBuilder(this.query)
+        .title('The title')
+        .type('danger')
+        .timeout(5000)
+        .dismissible(false)
+        .build()
+    );
   }
 
   updateSearch(data: any) {

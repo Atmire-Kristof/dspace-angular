@@ -1,30 +1,33 @@
-import {Notification} from "./Notification";
-import {NotificationAction, NotificationActionTypes} from "./notification.actions";
+import { Notification } from './notification.model';
+import { NotificationAction, NotificationActionTypes } from './notification.actions';
 
 export interface NotificationState {
-  notifications: Array<Notification>;
+  notifications: Notification[];
 }
 
 const initialState: NotificationState = {
-  notifications: []
+  notifications: new Array<Notification>()
 }
 
 export function notificationReducer(state = initialState, action: NotificationAction): NotificationState {
-  switch(action.type) {
+  switch (action.type) {
 
     case NotificationActionTypes.ADD: {
-      let notifications = state.notifications.push(action.notification);
+      const notifications = [...state.notifications, action.notification];
       return Object.assign({}, state, {
         notifications: notifications
       });
     }
 
     case NotificationActionTypes.REMOVE: {
-      let index = state.notifications.indexOf(action.notification);
-      let notifications = state.notifications.splice(index, 1);
+      const notifications = state.notifications.filter((notification) => notification !== action.notification);
       return Object.assign({}, state, {
         notifications: notifications
       });
+    }
+
+    default: {
+      return state;
     }
 
   }

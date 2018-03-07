@@ -66,7 +66,8 @@
     "webdriver:update": "node node_modules/protractor/bin/webdriver-manager update --standalone",
     "lint": "tslint \"src/**/*.ts\" && tslint \"e2e/**/*.ts\"",
     "docs": "typedoc --options typedoc.json ./src/",
-    "coverage": "http-server -c-1 -o -p 9875 ./coverage"
+    "coverage": "http-server -c-1 -o -p 9875 ./coverage",
+    "checklint": "tslint -v"
   },
   "dependencies": {
     "@angular/animations": "^5.2.5",

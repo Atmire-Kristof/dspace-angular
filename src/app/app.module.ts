@@ -27,9 +27,9 @@ import { CoreModule } from './core/core.module';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
-import { NotificationComponent } from "./shared/notification/notification.component";
+import { NotificationComponent } from './shared/notification/notification.component';
 
-import { NotificationService } from "./shared/notification/notification.service";
+import { NotificationService } from './shared/notification/notification.service';
 
 import { DSpaceRouterStateSerializer } from './shared/ngrx/dspace-router-state-serializer';
 

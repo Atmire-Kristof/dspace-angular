@@ -1,34 +1,28 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { NotificationService } from "./notification.service";
-import { Notification } from "./Notification";
-import {Subscription} from "rxjs/Subscription";
-import {Observable} from "rxjs/Observable";
+import { Component, OnInit } from '@angular/core';
+import { NotificationService } from './notification.service';
+import { Notification } from './notification.model';
+import { Observable } from 'rxjs/Observable';
+import {fadeInOut} from '../animations/fade';
 
 @Component({
   selector: 'ds-notification',
   styleUrls: ['./notification.component.scss'],
-  templateUrl: './notification.component.html'
+  templateUrl: './notification.component.html',
+  animations: [fadeInOut]
 })
-export class NotificationComponent implements OnDestroy, OnInit {
+export class NotificationComponent implements OnInit {
 
-  notifications: Observable<Array<Notification>>;
+  notifications: Observable<Notification[]>;
 
   hidden: boolean;
 
-  constructor(private notificationService: NotificationService) {
-    this.notifications = notificationService.notifications;
-  }
+  constructor(private notificationService: NotificationService) {}
 
   ngOnInit() {
-
+    this.notifications = this.notificationService.notifications;
   }
 
   close(notification: Notification) {
     this.notificationService.close(notification);
   }
-
-  ngOnDestroy() {
-
-  }
-
 }

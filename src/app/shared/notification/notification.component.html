@@ -1,5 +1,8 @@
 <div class="container" id="notifications-wrapper">
-  <div *ngFor="let notification of notifications | async">
-    <ngb-alert [type]="notification.type" (close)="close(notification)">{{notification.message}}</ngb-alert>
+  <div *ngFor="let notification of (notifications | async)" @fadeInOut>
+    <ngb-alert [type]="notification.type" [dismissible]="notification.dismissible" (close)="close(notification)">
+      <h3 *ngIf="notification.title != ''">{{notification.title}}</h3>
+      <label>{{notification.message}}</label>
+    </ngb-alert>
   </div>
 </div>

@@ -12,7 +12,7 @@ import {
   SearchFiltersState
 } from './+search-page/search-filters/search-filter/search-filter.reducer';
 import { truncatableReducer, TruncatablesState } from './shared/truncatable/truncatable.reducer';
-import {notificationReducer, NotificationState} from "./shared/notification/notification.reducer";
+import {notificationReducer, NotificationState} from './shared/notification/notification.reducer';
 
 export interface AppState {
   router: fromRouter.RouterReducerState;

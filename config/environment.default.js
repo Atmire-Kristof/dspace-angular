@@ -30,5 +30,11 @@ module.exports = {
   // Log directory
   logDirectory: '.',
   // NOTE: will log all redux actions and transfers in console
-  debug: false
+  debug: false,
+  notification: {
+    message: 'Empty message',
+    type: 'info',
+    timeout: 0,
+    dismissible: true
+  }
 };

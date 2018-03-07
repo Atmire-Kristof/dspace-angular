@@ -1,5 +1,5 @@
-import {Action} from "@ngrx/store";
-import {Notification} from "./Notification";
+import { Action } from '@ngrx/store';
+import { Notification } from './notification.model';
 
 import { type } from '../ngrx/type';
 
@@ -8,9 +8,11 @@ export const NotificationActionTypes = {
   REMOVE: type('dspace/notification/REMOVE')
 };
 
+/* tslint:disable:max-classes-per-file */
 export class NotificationAction implements Action {
   notification: Notification;
   type;
+
   constructor(notification: Notification) {
     this.notification = notification;
   }
