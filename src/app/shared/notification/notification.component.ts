@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NotificationService } from "./notification.service";
 import { Notification } from "./Notification";
 import {Subscription} from "rxjs/Subscription";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'ds-notification',
@@ -10,16 +11,12 @@ import {Subscription} from "rxjs/Subscription";
 })
 export class NotificationComponent implements OnDestroy, OnInit {
 
-  notifications: Array<Notification>;
-  subscription: Subscription;
+  notifications: Observable<Array<Notification>>;
 
   hidden: boolean;
 
   constructor(private notificationService: NotificationService) {
     this.notifications = notificationService.notifications;
-    this.subscription = notificationService.notificationChange.subscribe((value)=>{
-      this.notifications = value;
-    });
   }
 
   ngOnInit() {
@@ -31,7 +28,7 @@ export class NotificationComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+
   }
 
 }

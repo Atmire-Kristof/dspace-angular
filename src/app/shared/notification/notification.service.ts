@@ -1,19 +1,24 @@
 import {Injectable} from "@angular/core";
-import {Subject} from "rxjs/Subject";
 import {Notification} from "./Notification";
+import {Observable} from "rxjs/Observable";
+import {NotificationState} from "./notification.reducer";
+import {AppState} from "../../app.reducer";
+import {createSelector, Store} from "@ngrx/store";
+import {NotificationAddAction, NotificationRemoveAction} from "./notification.actions";
+
+const notificationsStateSelector = (state: AppState) => state.notifications;
+const notificationsSelector = createSelector(notificationsStateSelector, (notificationState: NotificationState) => notificationState.notifications);
 
 @Injectable()
 export class NotificationService {
-  notifications: Array<Notification>;
-  notificationChange: Subject<Array<Notification>> = new Subject<Array<Notification>>();
+  notifications: Observable<Array<Notification>>;
 
-  constructor() {
-    this.notifications = [];
+  constructor(private store: Store<AppState>) {
+    this.notifications = this.store.select(notificationsSelector);
   }
 
   public addNotification(notification: Notification) {
-    this.notifications.push(notification);
-    this.update();
+    this.store.dispatch(new NotificationAddAction(notification));
   }
 
   public addNotificationWithTimeout(notification: Notification, time: number) {
@@ -24,12 +29,6 @@ export class NotificationService {
   }
 
   public close(notification: Notification) {
-    let index = this.notifications.indexOf(notification);
-    this.notifications.splice(index, 1);
-    this.update();
-  }
-
-  update() {
-    this.notificationChange.next(this.notifications);
+    this.store.dispatch(new NotificationRemoveAction(notification));
   }
 }
