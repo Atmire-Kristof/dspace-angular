@@ -27,11 +27,9 @@ import { CoreModule } from './core/core.module';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './pagenotfound/pagenotfound.component';
-import { NotificationComponent } from './shared/notification/notification.component';
-
-import { NotificationService } from './shared/notification/notification.service';
 
 import { DSpaceRouterStateSerializer } from './shared/ngrx/dspace-router-state-serializer';
+import {NotificationModule} from './shared/notification/notification.module';
 
 export function getConfig() {
   return ENV_CONFIG;
@@ -63,6 +61,7 @@ if (!ENV_CONFIG.production) {
     EffectsModule.forRoot(appEffects),
     StoreModule.forRoot(appReducers),
     StoreRouterConnectingModule,
+    NotificationModule,
     ...DEV_MODULES
   ],
   providers: [
@@ -82,15 +81,13 @@ if (!ENV_CONFIG.production) {
     {
       provide: RouterStateSerializer,
       useClass: DSpaceRouterStateSerializer
-    },
-    NotificationService
+    }
   ],
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    PageNotFoundComponent,
-    NotificationComponent
+    PageNotFoundComponent
   ],
   exports: [AppComponent]
 })

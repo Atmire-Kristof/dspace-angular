@@ -37,10 +37,10 @@ export class SearchFormComponent {
     // this.updateSearch(data);
     this.notificationService.addNotification(
       Notification.getBuilder(this.query)
-        .title('The title')
-        .type('danger')
+        .title('')
+        .type('info')
         .timeout(5000)
-        .dismissible(false)
+        .dismissible(true)
         .build()
     );
   }
