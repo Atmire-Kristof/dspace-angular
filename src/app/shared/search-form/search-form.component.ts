@@ -2,8 +2,6 @@ import { Component, Input } from '@angular/core';
 import { DSpaceObject } from '../../core/shared/dspace-object.model';
 import { Router } from '@angular/router';
 import { isNotEmpty, hasValue, isEmpty } from '../empty.util';
-import { NotificationService } from '../notification/notification.service';
-import { Notification } from '../notification/notification.model';
 
 /**
  * This component renders a simple item page.
@@ -30,19 +28,11 @@ export class SearchFormComponent {
     }
   }
 
-  constructor(private router: Router, private notificationService: NotificationService) {
+  constructor(private router: Router) {
   }
 
   onSubmit(data: any) {
-    // this.updateSearch(data);
-    this.notificationService.addNotification(
-      Notification.getBuilder(this.query)
-        .title('')
-        .type('info')
-        .timeout(5000)
-        .dismissible(true)
-        .build()
-    );
+    this.updateSearch(data);
   }
 
   updateSearch(data: any) {

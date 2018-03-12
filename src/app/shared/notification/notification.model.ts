@@ -13,10 +13,10 @@ export class Notification {
   }
 
   constructor(message: string) {
-    if (message !== null) {
-      this.message = message;
-    } else {
+    if (message == undefined) {
       this.message = ENV_CONFIG.notification.message;
+    } else {
+      this.message = message;
     }
     this.title = '';
     this.type = ENV_CONFIG.notification.type;
