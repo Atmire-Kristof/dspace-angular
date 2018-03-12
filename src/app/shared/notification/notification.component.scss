@@ -1,14 +1,10 @@
+@import '../../../styles/variables.scss';
+
 #notifications-wrapper {
-  position: fixed;
-  display: block;
   left: 50%;
   top: 0;
-  z-index: 9001;
-  padding-left: 0;
-  padding-top: 30px;
-  text-align: center;
+  z-index: $zindex-popover;
   > div {
-    position: relative;
     left: -50%;
     box-shadow: 5px 5px 10px #a8a8a8;
   }
