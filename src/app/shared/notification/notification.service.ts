@@ -20,11 +20,6 @@ export class NotificationService {
 
   public addNotification(notification: Notification) {
     this.store.dispatch(new NotificationAddAction(notification));
-    if (notification.timeout > 0) {
-      setTimeout(() => {
-        this.close(notification);
-      }, notification.timeout);
-    }
   }
 
   public close(notification: Notification) {

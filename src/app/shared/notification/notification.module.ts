@@ -3,11 +3,18 @@ import { NotificationComponent } from './notification.component';
 import { NotificationService } from './notification.service';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EffectsModule } from '@ngrx/effects';
+import { NotificationEffects } from './notification.effects';
+
+const effects = [
+  NotificationEffects
+];
 
 @NgModule({
   imports: [
     CommonModule,
-    NgbModule
+    NgbModule,
+    EffectsModule.forFeature(effects)
   ],
   declarations: [
     NotificationComponent
