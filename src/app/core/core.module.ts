@@ -38,6 +38,7 @@ import { SubmissionDefinitionsConfigService } from './config/submission-definiti
 import { SubmissionFormsConfigService } from './config/submission-forms-config.service';
 import { SubmissionSectionsConfigService } from './config/submission-sections-config.service';
 import { UUIDService } from './shared/uuid.service';
+import { MetadataRegistryService } from './metadata/metadataregistry.service';
 
 const IMPORTS = [
   CommonModule,
@@ -62,6 +63,7 @@ const PROVIDERS = [
   HostWindowService,
   ItemDataService,
   MetadataService,
+  MetadataRegistryService,
   ObjectCacheService,
   PaginationComponentOptions,
   RemoteDataBuildService,
